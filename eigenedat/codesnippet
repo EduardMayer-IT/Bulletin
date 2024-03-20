@@ -72,3 +72,119 @@ indElement(By.xpath('//div[@class="note-name"]'))
         }
     })
 })
+######################################
+
+
+Davide Longo
+09:59
+npm install chromedriver
+npm install selenium-webdriver
+Oscar Andres Gonzales
+10:32
+das wollen wir häufiger haben ;)
+Christian Rosué
+11:00
+das Gegenteil von JSON ;)
+Christian Rosué
+11:02
+Datenaustausch format
+Konstantin Kirsch
+11:08
+zuweiser
+Christian Rosué
+11:09
+Der Duden sagt "Kriterium" als Synonym
+Dimitar Boyanov
+11:28
+//div[contains(@class, 'box')]
+Dimitar Boyanov
+11:37
+<div style={{ backgroundColor: note.color }} className="box">
+            <div className="note-name">{note.item}</div>
+            <button id="delete" onClick={() => deleteNote(note.id)}>
+              X
+            </button>
+          </div>
+Dimitar Boyanov
+11:41
+'//div[@class="note-name"]'
+Dimitar Boyanov
+11:52
+require("chromedriver");
+const { Builder, By, Key } = require("selenium-webdriver");
+var assert = require("chai").assert;
+//describe - describes test
+describe("add note", function () {
+    //it - describes expected behaviour
+    it("should add a note and display on the page", async function () {
+        /*Selenium automates:
+        1. Open Chrome
+        2. Navigate to app
+        3. Type "Hello Selenium" in input box
+        4. Clicks the Enter key
+        */
+        //Chai asserts if new note
+'s text matches the input
+        //open Chrome browser
+        let driver = await new Builder().forBrowser("chrome").build();
+        try {
+            //open the website
+            await driver.get("http://localhost:3000/");
+
+            //find the search box and enter a note
+            await driver
+                .findElement(By.xpath('//input'))
+                .sendKeys("Hello Selenium", Key.RETURN);
+            //get the note's text
+            let note = await driver
+                .f
+indElement(By.xpath('//div[@class="note-name"]'))
+                .getText();
+            //assert that the note's text is the same as the input text "Hello Selenium"
+            assert.equal(note, "Hello Selenium");
+            console.log("TEST PASSED");
+        } finally {
+            //close the browser
+            await driver.quit();
+        }
+    })
+})
+Christian Rosué
+12:22
+Chrome failed to start
+Dimitar Boyanov
+12:27
+https://github.com/browser-actions/setup-chrome
+Christian Rosué
+12:28
+dimitar ist prompt engineer nebenberuflich noch
+ki pormpts erstelle
+Oscar Andres Gonzales
+12:29
+@Chris congrats wegen SCRUM!!
+Christian Rosué
+12:29
+danke <3
+Veli Kara
+12:37
+https://github.com/SeleniumHQ/selenium/issues/13255
+Dimitar Boyanov
+12:59
+jest.useRealTimers();
+Patrick Rosenbaum
+13:08
+const chromeCapabilities = Capabilities.chrome();
+        chromeCapabilities.set('goog:chromeOptions', {args: ['--headless'] });
+
+        const driver = new Builder().withCapabilities(chromeCapabilities).build();
+Dimitar Boyanov
+13:16
+https://stackoverflow.com/questions/22426273/chromeoptions-causes-reference-error-using-selenium-chromedriver-for-node-js
+var options = new chrome.Options();
+Dimitar Boyanov
+13:22
+https://mochajs.org/
+https://www.chaijs.com/guide/styles/
+Dimitar Boyanov
+13:24
+https://www.cypress.io/
