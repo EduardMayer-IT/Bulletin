@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "react-scripts start",
-    "test": "mocha"
+    "build": "react-scripts build",
+    "test": "npx mocha --no-timeouts 'src/test.js'",
+    "eject": "react-scripts eject",
+    "start:prod": "node app.js"
   },
   "repository": {
     "type": "git",
